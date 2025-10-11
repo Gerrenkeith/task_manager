@@ -1,0 +1,26 @@
+<%= form_with model: @task do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% @task.errors.full_messages_for(:title).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+    <% @task.errors.full_messages_for(:body).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
+
+    <div>
+        <%= form.label :due_at %><br>
+        <%= form.datetime_select :due_at %>
+    </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
