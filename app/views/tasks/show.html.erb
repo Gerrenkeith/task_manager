@@ -11,20 +11,7 @@
 </ul>
 
 <h2>List Items</h2>
-<% @task.lists.each do |list| %>
-  <p>
-    <strong>Name:</strong>
-    <%= list.name %>
-  </p>
-<% end %>
+<%= render @task.lists %>
 
 <h2>Add a list item:</h2>
-<%= form_with model: [ @task, @task.lists.build ] do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<%= render 'lists/form', task: @task %>

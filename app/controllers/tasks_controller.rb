@@ -1,10 +1,23 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
+
+    respond_to do |format|
+      # If the browser requests HTML (e.g., a direct visit)
+      format.html { render :index } # Renders the HTML view (if it exists)
+
+      # If the client requests JSON (which your React app does)
+      format.json { render json: @tasks }
+    end
   end
 
   def show 
     @task = Task.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @task }
+    end
   end
 
   def new
@@ -44,7 +57,7 @@ def destroy
 
   private
     def task_params
-      params.require(:task).permit(:title, :body, :due_at)
+      params.require(:task).permit(:title, :body, :due_at, :status)
     end
 end
 
