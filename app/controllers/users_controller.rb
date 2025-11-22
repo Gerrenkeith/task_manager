@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in!
+  before_action :user_signed_in?, only: [:new, :create]
 
   def index 
     @user = User.all
   end 
 
   def show 
-    @user = User.find(:id);
+    @user = User.find(params[:id]);
   end
 
   def new 

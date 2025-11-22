@@ -1,23 +1,18 @@
-class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+# app/controllers/application_controller.rb
 
-helper_method :current_user, :user_signed_in?
+class ApplicationController < ActionController::Base
+  # You must include both methods here so they are available in ALL controllers (like HomeController) and views
+  helper_method :current_user, :user_signed_in? 
 
   def current_user
-    # Finds user only once per request and stores it in the instance variable @current_user
+    # Find the user based on the session ID, or return nil
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
   def user_signed_in?
-    # True if current_user is not nil
-    current_user.present?
+    # This method relies on current_user and must be defined
+    current_user.present? 
   end
 
-  def require_user_logged_in!
-    # Used as a before_action to protect specific controller actions
-    unless user_signed_in?
-      redirect_to login_path, alert: "You must be logged in to access this page."
-    end
-  end
+  # ... rest of your methods ...
 end

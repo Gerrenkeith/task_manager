@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
-    # app/controllers/sessions_controller.rb
-class SessionsController < ApplicationController
   def new
-    # Renders the login form
   end
 
   def create
@@ -26,4 +23,4 @@ class SessionsController < ApplicationController
     redirect_to root_path, notice: "Logged out!"
   end
 end
-end
+
